@@ -1,0 +1,27 @@
+{
+  "name": "teamwork",
+  "version": "1.0.0",
+  "description": "A simple web application for renting apartments",
+  "homepage": "https://github.com/hayderalhatemi/teamwork#readme",
+  "bugs": {
+    "url": "https://github.com/hayderalhatemi/teamwork/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayderalhatemi/teamwork.git"
+  },
+  "license": "ISC",
+  "author": "Joonatan Silvennoinen",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
