@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=0.8, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/confetti_cuisine.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
-  <title>Confetti Cuisine</title>
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/confetti_cuisine.css">
-</head>
+  <body>
+    <div id="nav">
+      <h1 id="title">RentAll</h1>
+      <div class="col-sm nav-align">
+        <a href="/">
+          <span class="button">Home</span>
+        </a>
+        <a href="/courses">
+          <span class="button">Courses</span>
+        </a>
+        <a href="/contact">
+          <span class="button">Contact</span>
+        </a>
+        <a href="/subscribers">
+          <span class="button">Subscriber</span>
+        </a>
 
-<body>
-  <div id="nav">
-    <div class="col-sm nav-align">
-      <h1 id="title">Confetti Cuisine</h1>
-    </div>
-
-    <div class="col-sm nav-align">
-      <a href="/">
-        <span class="button">Home</span>
-      </a>
-      <a href="/courses">
-        <span class="button">Courses</span>
-      </a>
-      <a href="/contact">
-        <span class="button">Contact</span>
-      </a>
-      <a href="/subscribers">
-        <span class="button">Subscriber</span>
-      </a>
-
-      <% if (!currentUser) { %>
+        <% if (!currentUser) { %>
         <!-- When NOT logged in -->
         <a href="/auth/login">
           <span class="button">Login</span>
@@ -37,17 +35,19 @@
         <a href="/auth/register">
           <span class="button">Register</span>
         </a>
-      <% } else { %>
+        <% } else { %>
         <!-- When logged in -->
-        <form action="/auth/logout" method="post" style="display:inline;">
-          <button class="button" type="submit">Logout</button>
+        <form
+          action="/auth/logout"
+          method="post"
+          style="display: flex; align-items: center; max-width: 120px"
+        >
+          <button class="button-login" type="submit">Logout</button>
         </form>
-      <% } %>
+        <% } %>
+      </div>
     </div>
-  </div>
 
-  <%- body %>
-
-</body>
-
+    <%- body %>
+  </body>
 </html>
