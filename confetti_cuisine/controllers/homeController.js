@@ -1,17 +1,23 @@
 "use strict";
 
-var courses = [
+var prices = [
   {
-    title: "Event Driven Cakes",
-    cost: 50
+    kind: "Villa",
+    address: "Juokahaisenkatu 3 20540 Turku",
+    number_of_room: 3,
+    price: 100
   },
   {
-    title: "Asynchronous Artichoke",
-    cost: 25
+    kind: "Appartment",
+    address: "linnankatu 3 20540 Turku",
+    number_of_room: 2,
+    price: 50
   },
   {
-    title: "Object Oriented Orange Juice",
-    cost: 10
+    kind: "Room",
+    address: "Yo-kylä 3 20540 Turku",
+    number_of_room: 1,
+    price: 30
   }
 ];
 
@@ -30,14 +36,14 @@ exports.postedSignUpForm = (req, res) => {
 }; */
 
 export default {
-  showCourses: (req, res) => {
-    res.render("courses", {
-      offeredCourses: courses
+  showPrices: (req, res) => {
+    res.render("prices", {
+      offeredPrices: prices
     });
   },
 
   showSignUp:(req, res) => {
-    res.render("contact");
+    res.render("add_room");
   },
 
   postedSignUpForm:(req, res) => {
