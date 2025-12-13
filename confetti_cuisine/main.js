@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import multer from "multer";
+import methodOverride from "method-override";
 
 
 import homeController from "./controllers/homeController.js";
@@ -45,6 +46,8 @@ app.use(
 app.use(express.json());
 app.use(layouts);
 app.use(express.static("public"));
+
+app.use(methodOverride("_method"));
 
 // ----- Sessions -----
 app.use(
@@ -84,13 +87,11 @@ app.get("/prices", homeController.showPrices);
 app.post("/add_room", homeController.postedSignUpForm);
 
 app.use("/auth", authRoutes); // /auth/register, /auth/login, /auth/logout
-
-//app.get("/subscribers", subscribersController.getAllSubscribers);
-//app.get("/contact", subscribersController.getSubscriptionPage);
-//app.post("/subscribe", subscribersController.saveSubscriber);
-
-//app.get("/courses", homeController.showCourses);
-//app.post("/contact", homeController.postedSignUpForm);
+//edit house
+app.get("/houses/:id/edit", houseController.edit, houseController.redirectView);
+app.put("/houses/:id", upload.array("images", 10), houseController.update, houseController.redirectView);
+//delete house
+app.delete("/houses/:id/delete", houseController.delete, houseController.redirectView);
 
 // ----- Error handlers -----
 app.use(errorController.pageNotFoundError);
