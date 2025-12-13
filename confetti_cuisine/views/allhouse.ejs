@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="list-container">
+    <% Houses.forEach(s => { %>
+    <div class="house">
+      <p>
+        <span class="item-label">Kind:</span>
+        <%= s.kind %>
+      </p>
+      <p>
+        <span class="item-label">Number of rooms</span>
+        <%= s.number_of_rooms %>
+      </p>
+      <p>
+        <span class="item-label">zipCode:</span>
+        <%= s.zipCode %>
+      </p>
+      <p>
+        <span class="item-label">StreetAddress:</span>
+        <%= s.streetAddress %>
+      </p>
+      <p>
+        <span class="item-label">Rent status:</span>
+        <%= s.rent_status %>
+      </p>
+      <p>
+        <span class="item-label">********************:</span>
+      </p>                  
+    </div>
+    <% }); %>
+  </div>
+</div>
