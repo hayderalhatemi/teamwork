@@ -1,30 +1,52 @@
-<h1>Register</h1>
+<div class="container">
+  <h1>Register</h1>
 
-<% if (errors && errors.length) { %>
+  <% if (errors && errors.length) { %>
   <ul class="errors">
     <% errors.forEach(e => { %>
-      <li><%= e.msg %></li>
+    <li><%= e.msg %></li>
     <% }) %>
   </ul>
-<% } %>
+  <% } %>
 
-<form action="/auth/register" method="post" class="form">
-  <label>
-    Name
-    <input type="text" name="name" value="<%= form.name || '' %>" required />
-  </label>
-  <br />
-  <label>
-    Email
-    <input type="email" name="email" value="<%= form.email || '' %>" required />
-  </label>
-  <br />
-  <label>
-    Password
-    <input type="password" name="password" required />
-  </label>
-  <br />
-  <button type="submit">Create account</button>
-</form>
+  <form action="/auth/register" method="post" class="subscription-form">
+    <label>
+      Name
+      <input
+        type="text"
+        name="name"
+        value="<%= form.name || '' %>"
+        required
+        placeholder="Name"
+        class="placeholder"
+      />
+    </label>
+    <br />
+    <label>
+      Email
+      <input
+        type="email"
+        name="email"
+        value="<%= form.email || '' %>"
+        required
+        placeholder="Email"
+        class="placeholder"
+      />
+    </label>
+    <br />
+    <label>
+      Password
+      <input
+        type="password"
+        name="password"
+        required
+        placeholder="Password"
+        class="placeholder"
+      />
+    </label>
+    <br />
+    <button type="submit">Create account</button>
+  </form>
 
-<p>Already have an account? <a href="/auth/login">Log in</a></p>
+  <p>Already have an account? <a href="/auth/login">Log in</a></p>
+</div>

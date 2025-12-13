@@ -1,14 +1,22 @@
 {
   "name": "confetti_cuisine",
   "version": "1.0.0",
-  "description": "A site for booking classes for cooking.",
+  "description": "A simple web application for renting apartments",
+  "homepage": "https://github.com/hayderalhatemi/teamwork#readme",
+  "bugs": {
+    "url": "https://github.com/hayderalhatemi/teamwork/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayderalhatemi/teamwork.git"
+  },
   "main": "main.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js"
   },
-  "author": "Jon Wexler",
+  "author": "Joonatan Silvennoinen, Hayder Alhatemi, Hao Nguyen",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",

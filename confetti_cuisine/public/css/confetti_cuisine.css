@@ -88,6 +88,11 @@ a {
   font-weight: bold;
 }
 
+.login-form {
+  display: block;
+  margin: 5px;
+}
+
 .subscriber {
   padding: 10px 0px;
   border-bottom: 1px solid lightgray;
@@ -111,5 +116,9 @@ a {
 
 .subscription-form input {
   display: block;
-  margin: 5px;
+  margin: 4px;
+}
+
+.placeholder::placeholder {
+  font-weight: normal;
 }
