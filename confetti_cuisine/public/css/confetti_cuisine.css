@@ -14,14 +14,15 @@ body {
   box-shadow: 10px 3px 10px #ccc;
   position: absolute;
   top: 0;
-  background-color: #6495ed;
+  background-color: #457bde;
   display: flex;
 }
 
 #title {
   color: #fff;
   font-family: "Gill Sans";
-  justify-content: center;
+  align-self: center;
+  margin: 0;
 }
 
 img {
@@ -44,7 +45,7 @@ a {
   padding-left: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 #login {
@@ -62,7 +63,7 @@ a {
   padding: 0.3vw 3vw;
   cursor: pointer;
   color: #fff;
-  font-size: large;
+  font-size: 20px;
 }
 
 .button:hover {
