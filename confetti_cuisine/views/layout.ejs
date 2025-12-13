@@ -26,22 +26,16 @@
         <a href="/subscribers">
           <span class="button">Subscriber</span>
         </a>
-
+      </div>
+      <div id="login">
         <% if (!currentUser) { %>
         <!-- When NOT logged in -->
         <a href="/auth/login">
-          <span class="button">Login</span>
-        </a>
-        <a href="/auth/register">
-          <span class="button">Register</span>
+          <span class="button-login">Login</span>
         </a>
         <% } else { %>
         <!-- When logged in -->
-        <form
-          action="/auth/logout"
-          method="post"
-          style="display: flex; align-items: center; max-width: 120px"
-        >
+        <form action="/auth/logout" method="post" style="display: flex">
           <button class="button-login" type="submit">Logout</button>
         </form>
         <% } %>
