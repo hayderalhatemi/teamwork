@@ -8,14 +8,18 @@ import layouts from "express-ejs-layouts";
 import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import multer from "multer";
+
 
 import homeController from "./controllers/homeController.js";
 import errorController from "./controllers/errorController.js";
 import subscribersController from "./controllers/subscribersController.js";
 import authRoutes from "./routes/authRoutes.js";
+import houseController from "./controllers/houseController.js";
+import uploads from "./controllers/uploads.js";
 
 const app = express();
-
+const upload = multer({ dest: "public/uploads/" });
 const PORT = process.env.PORT || 4000;
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/confetti_cuisine";
@@ -35,7 +39,7 @@ app.set("view engine", "ejs");
 // ----- Basic middleware -----
 app.use(
   express.urlencoded({
-    extended: false
+    extended: true
   })
 );
 app.use(express.json());
@@ -66,20 +70,27 @@ app.use((req, res, next) => {
     : null;
   next();
 });
-
+//view images
+app.use("uploads", express.static("public/uploads"));
 // ----- Routes -----
 app.get("/", (req, res) => {
   res.render("index");
 });
+// Display all houses or room
+app.get("/allrooms", houseController.getAllHouses);
+app.get("/add_room", houseController.registerHouse);
+app.post("/newHouse", upload.array("images", 10), houseController.saveHouse);
+app.get("/prices", homeController.showPrices);
+app.post("/add_room", homeController.postedSignUpForm);
 
 app.use("/auth", authRoutes); // /auth/register, /auth/login, /auth/logout
 
-app.get("/subscribers", subscribersController.getAllSubscribers);
-app.get("/contact", subscribersController.getSubscriptionPage);
-app.post("/subscribe", subscribersController.saveSubscriber);
+//app.get("/subscribers", subscribersController.getAllSubscribers);
+//app.get("/contact", subscribersController.getSubscriptionPage);
+//app.post("/subscribe", subscribersController.saveSubscriber);
 
-app.get("/courses", homeController.showCourses);
-app.post("/contact", homeController.postedSignUpForm);
+//app.get("/courses", homeController.showCourses);
+//app.post("/contact", homeController.postedSignUpForm);
 
 // ----- Error handlers -----
 app.use(errorController.pageNotFoundError);

@@ -24,6 +24,12 @@
         <%= s.rent_status %>
       </p>
       <p>
+        <span class="item-label">House images:</span>
+        <% s.images.forEach(img => { %>
+          <img src="<%= img %>" alt="House Image" style="width:100px;height:100px;">
+        <% }); %> 
+      </p>      
+      <p>
         <span class="item-label">********************:</span>
       </p>                  
     </div>
