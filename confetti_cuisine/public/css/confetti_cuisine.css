@@ -122,3 +122,61 @@ a {
 .placeholder::placeholder {
   font-weight: normal;
 }
+
+/* House list layout */
+.house {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.house-content {
+  width: 75%;
+}
+
+.house-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 14px;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+}
+
+.btn-edit {
+  background-color: #ed4a0f;
+}
+
+.btn-edit:hover {
+  background-color: #ffb99f;
+  color: #ed4a0f;
+}
+
+.btn-delete {
+  background-color: #625a56;
+}
+
+.btn-delete:hover {
+  background-color: #ccc;
+  color: #625a56;
+}
+
+/* Images */
+.house-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 5px;
+  border: 1px solid #ddd;
+}
