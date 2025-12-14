@@ -13,7 +13,6 @@ import methodOverride from "method-override";
 
 import homeController from "./controllers/homeController.js";
 import errorController from "./controllers/errorController.js";
-import subscribersController from "./controllers/subscribersController.js";
 import authRoutes from "./routes/authRoutes.js";
 import houseController from "./controllers/houseController.js";
 import uploads from "./controllers/uploads.js";
