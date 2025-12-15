@@ -1,31 +1,22 @@
 "use strict";
 
-var prices = [
-  {
-    kind: "Villa",
-    address: "Juokahaisenkatu 3 20540 Turku",
-    number_of_room: 3,
-    price: 100,
-  },
-  {
-    kind: "Appartment",
-    address: "linnankatu 3 20540 Turku",
-    number_of_room: 2,
-    price: 50,
-  },
-  {
-    kind: "Room",
-    address: "Yo-kylä 3 20540 Turku",
-    number_of_room: 1,
-    price: 30,
-  },
-];
+import House from "../models/house.js";
 
 export default {
-  showPrices: (req, res) => {
-    res.render("prices", {
-      offeredPrices: prices,
-    });
+  // STEP 1: Load apartments from DB instead of static prices
+  showPrices: async (req, res) => {
+    try {
+      const houses = await House.find({})
+        .populate("owner", "username email")
+        .exec();
+
+      res.render("prices", {
+        houses
+      });
+    } catch (error) {
+      console.error(error);
+      res.send("Error loading apartments");
+    }
   },
 
   showSignUp: (req, res) => {
@@ -34,5 +25,5 @@ export default {
 
   postedSignUpForm: (req, res) => {
     res.render("thanks");
-  },
+  }
 };

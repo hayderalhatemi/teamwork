@@ -1,25 +1,29 @@
-import Mongoose from "mongoose";
-const priceSchema = Mongoose.Schema({
-    kind: {
-        type:string,
-        reuire: true,
-        unique,
-    },
-    address: {
-        type: String,
-        required: true,
-    },
-    number_of_room: {
-        type: Number,
-        default: 0,
-        min: [1, "Number of room must greater than zero"]
-    },
-    price: {
-        type: Number,
-        default: 0,
-        min: [0, "Price not have a negative number"]
-    }
+"use strict";
 
+import mongoose from "mongoose";
+
+const priceSchema = new mongoose.Schema({
+  kind: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  address: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  number_of_room: {
+    type: Number,
+    required: true,
+    min: [1, "Number of rooms must be greater than zero"]
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: [0, "Price cannot be negative"]
+  }
 });
 
-export default monggoose.model("price", priceSchema);
+export default mongoose.model("Price", priceSchema);

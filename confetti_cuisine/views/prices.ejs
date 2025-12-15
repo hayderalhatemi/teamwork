@@ -1,24 +1,33 @@
 <div class="container">
-  <div class="col-sm-6">
-    <img src="images/prices.jpg" alt="">
-  </div>
-  <div class="col-sm-8">
-    <h1 class="title">WE SERVE ALL KIND OF HOUSES</h1>
-    <h1>PRICES</h1>
-    <% offeredPrices.forEach(prices => { %>
-    <h5>
-      <%= prices.kind %>
-    </h5>
-    <span>
-      <%= prices.address %> </span>
-    </h5>
-    <h5>
-    <span>
-      <%= prices.number_of_rooms %> </span>
-    </h5>
-    <span>$
-      <%= prices.price %> </span>/night
-    </h5>
-    <% }); %>
-  </div>
+
+  <h2>Available apartments</h2>
+
+  <% houses.forEach(h => { %>
+
+    <div class="house">
+
+      <p><strong>Type:</strong> <%= h.kind %></p>
+      <p><strong>Address:</strong> <%= h.streetAddress %></p>
+      <p><strong>Rooms:</strong> <%= h.number_of_rooms %></p>
+      <p><strong>Rented:</strong> <%= h.rent_status ? "Yes" : "No" %></p>
+
+      <% if (h.owner) { %>
+        <p>
+          <strong>Owner:</strong>
+          <%= h.owner.username %> (<%= h.owner.email %>)
+        </p>
+      <% } %>
+
+      <% if (h.images && h.images.length > 0) { %>
+        <% h.images.forEach(img => { %>
+          <img src="<%= img %>" style="width:120px; margin:5px;">
+        <% }) %>
+      <% } %>
+
+      <hr>
+
+    </div>
+
+  <% }) %>
+
 </div>

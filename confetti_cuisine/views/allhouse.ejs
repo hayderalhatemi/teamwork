@@ -16,18 +16,24 @@
           </p>
 
           <p>
-            <span class="item-label">zipCode:</span>
+            <span class="item-label">Zip Code:</span>
             <%= s.zipCode %>
           </p>
 
           <p>
-            <span class="item-label">StreetAddress:</span>
+            <span class="item-label">Street Address:</span>
             <%= s.streetAddress %>
           </p>
 
           <p>
             <span class="item-label">Rent status:</span>
-            <%= s.rent_status %>
+            <%= s.rent_status ? "Rented" : "Available" %>
+          </p>
+
+          <!-- ✅ OWNER INFO -->
+          <p>
+            <span class="item-label">Owner:</span>
+            <%= s.owner ? s.owner.username : "Unknown" %>
           </p>
 
           <p>
@@ -42,15 +48,16 @@
         <div class="house-actions">
           <div class="center">
             <a class="button" href="<%= `/houses/${s._id}/edit` %>">
-              Edit 
+              Edit
             </a>
           </div>
 
-        <div class="center">
-            <form action="/houses/<%= s._id %>/delete?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this house?')">
-                <button type="submit" class="button">Delete</button>
+          <div class="center">
+            <form action="/houses/<%= s._id %>/delete?_method=DELETE" method="POST"
+              onsubmit="return confirm('Are you sure you want to delete this house?')">
+              <button type="submit" class="button">Delete</button>
             </form>
-        </div>
+          </div>
         </div>
       </div>
 

@@ -1,49 +1,60 @@
 "use strict";
-import expressEjsLayouts from 'express-ejs-layouts';
-import House from '../models/house.js';
 
-// using the async/await syntact
+import expressEjsLayouts from "express-ejs-layouts";
+import House from "../models/house.js";
+import Price from "../models/prices.js"; // ✅ ADD THIS
+
+// using async/await syntax
 export default {
+  // =========================
+  // HOUSES
+  // =========================
   getAllHouses: async (req, res) => {
-    const Houses = await House.find({}).exec()
-      .catch(error => {
-        console.error(error.message);
-        return []; // return empty array if error
-      });
+    try {
+      const Houses = await House.find({})
+        .populate("owner", "username email")
+        .exec();
 
-    res.render("allhouse", { Houses });
-    console.log("promise complete");
+      res.render("allhouse", { Houses });
+      console.log("promise complete");
+    } catch (error) {
+      console.error(error.message);
+      res.render("allhouse", { Houses: [] });
+    }
   },
-
 
   registerHouse: (req, res) => {
     res.render("add_room");
   },
-  saveHouse: async (req, res) => {//add async
+
+  saveHouse: async (req, res) => {
     try {
-    // Extract uploaded image paths
       const imagePaths = req.files
         ? req.files.map(file => `/uploads/${file.filename}`)
-        : [];  
-      const newHouse = await new House({//add await
+        : [];
+
+      const newHouse = new House({
         kind: req.body.kind,
         number_of_rooms: req.body.number_of_rooms,
         zipCode: req.body.zipCode,
         streetAddress: req.body.streetAddress,
-        rent_status: req.body.rent_status === 'true',
-        images: imagePaths
+        rent_status: req.body.rent_status === "true",
+        images: imagePaths,
+        owner: req.user._id
       });
-    
+
       await newHouse.save();
       res.render("thanks");
+
     } catch (error) {
       console.error(error);
       res.send(error);
     }
   },
+
   delete: (req, res, next) => {
-    console.log("DELETE ID:", req.params.id);
     const houseId = req.params.id;
+
     House.findByIdAndRemove(houseId)
       .then(() => {
         res.locals.redirect = "/allrooms";
@@ -54,37 +65,49 @@ export default {
         next();
       });
   },
-  edit: async (req, res, next) => {
+
+  edit: async (req, res) => {
     try {
       const houseId = req.params.id;
       const houseToEdit = await House.findById(houseId).exec();
+
       if (houseToEdit) {
         res.render("edit_room", { house: houseToEdit });
       } else {
         res.redirect("/allrooms");
       }
     } catch (error) {
-      console.error(`Error fetching house for edit: ${error.message}`);
-      res.redirect("/allrooms")};
+      console.error(error.message);
+      res.redirect("/allrooms");
+    }
   },
-  //update house
+
   update: async (req, res, next) => {
     try {
       const houseId = req.params.id;
+
       const imagePaths = req.files
         ? req.files.map(file => `/uploads/${file.filename}`)
-        : [];  
+        : [];
+
       const updatedData = {
         kind: req.body.kind,
         number_of_rooms: req.body.number_of_rooms,
         zipCode: req.body.zipCode,
         streetAddress: req.body.streetAddress,
-        rent_status: req.body.rent_status === 'true',
+        rent_status: req.body.rent_status === "true"
       };
+
       if (imagePaths.length > 0) {
         updatedData.images = imagePaths;
       }
-      const updatedHouse = await House.findByIdAndUpdate(houseId, updatedData, { new: true }).exec();
+
+      const updatedHouse = await House.findByIdAndUpdate(
+        houseId,
+        updatedData,
+        { new: true }
+      ).exec();
+
       if (updatedHouse) {
         res.locals.redirect = "/allrooms";
         next();
@@ -92,13 +115,32 @@ export default {
         res.redirect("/allrooms");
       }
     } catch (error) {
-      console.error(`Error updating house: ${error.message}`);
+      console.error(error.message);
       res.redirect("/allrooms");
     }
   },
+
+  // =========================
+  // PRICES (✅ NEW)
+  // =========================
+  // PRICES page = list of houses with owners
+getPrices: async (req, res) => {
+  try {
+    const houses = await House.find({})
+      .populate("owner", "username email")
+      .exec();
+
+    res.render("prices", { houses });
+  } catch (error) {
+    console.error(error);
+    res.send("Error loading apartments");
+  }
+},
+
+
   redirectView: (req, res, next) => {
-    let redirectPath = res.locals.redirect;
+    const redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);
     else next();
   }
-};  
+};
