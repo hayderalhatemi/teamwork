@@ -1,13 +1,24 @@
 <div class="container">
   <div class="col-sm-6">
-    <img src="images/fruit.jpg" alt="" />
+    <img src="images/prices.jpg" alt="">
   </div>
-  <div class="col-sm-6">
-    <h1 class="title">Learn to cook cutting edge food</h1>
-    <h1>Our locations</h1>
+  <div class="col-sm-8">
+    <h1 class="title">WE SERVE ALL KIND OF HOUSES</h1>
+    <h1>PRICES</h1>
     <% offeredPrices.forEach(prices => { %>
-    <h5><%= prices.kind %></h5>
-    <span>$ <%= prices.address %> </span>
+    <h5>
+      <%= prices.kind %>
+    </h5>
+    <span>
+      <%= prices.address %> </span>
+    </h5>
+    <h5>
+    <span>
+      <%= prices.number_of_rooms %> </span>
+    </h5>
+    <span>$
+      <%= prices.price %> </span>/night
+    </h5>
     <% }); %>
   </div>
 </div>
