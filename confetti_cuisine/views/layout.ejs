@@ -1,53 +1,48 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=0.8, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/confetti_cuisine.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
-  <title>Confetti Cuisine</title>
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/confetti_cuisine.css">
-</head>
+  <body>
+    <div id="nav">
+      <h1 id="title">RentAll</h1>
 
-<body>
-  <div id="nav">
-    <div class="col-sm nav-align">
-      <h1 id="title">Confetti Cuisine</h1>
-    </div>
-
-    <div class="col-sm nav-align">
-      <a href="/">
-        <span class="button">Home</span>
-      </a>
-      <a href="/prices">
-        <span class="button">Prices</span>
-      </a>
-      <a href="/add_room">
-        <span class="button">Add room</span>
-      </a>
-      <a href="/allrooms">
-        <span class="button">All Room</span>
-      </a>
-
-      <% if (!currentUser) { %>
+      <div class="col-sm nav-align">
+        <a href="/">
+          <span class="button">Home</span>
+        </a>
+        <a href="/prices">
+          <span class="button">Prices</span>
+        </a>
+        <a href="/add_room">
+          <span class="button">Add room</span>
+        </a>
+        <a href="/allrooms">
+          <span class="button">All Room</span>
+        </a>
+      </div>
+      <div id="login">
+        <% if (!currentUser) { %>
         <!-- When NOT logged in -->
         <a href="/auth/login">
-          <span class="button">Login</span>
+          <span class="button-login">Login</span>
         </a>
-        <a href="/auth/register">
-          <span class="button">Register</span>
-        </a>
-      <% } else { %>
+        <% } else { %>
         <!-- When logged in -->
-        <form action="/auth/logout" method="post" style="display:inline;">
-          <button class="button" type="submit">Logout</button>
+        <form action="/auth/logout" method="post" style="display: flex">
+          <button class="button-login" type="submit">Logout</button>
         </form>
-      <% } %>
+        <% } %>
+      </div>
     </div>
-  </div>
 
-  <%- body %>
-
-</body>
-
+    <%- body %>
+  </body>
 </html>

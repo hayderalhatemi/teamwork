@@ -43,6 +43,7 @@ export const register = async (req, res) => {
     // create session (we'll wire session middleware soon)
     req.session.userId = user._id;
     req.session.userRole = user.role;
+    req.session.userName = user.name;
 
     return res.redirect("/");
   } catch (err) {
@@ -91,6 +92,7 @@ export const login = async (req, res) => {
 
     req.session.userId = user._id;
     req.session.userRole = user.role;
+    req.session.userName = user.name;
 
     return res.redirect("/");
   } catch (err) {

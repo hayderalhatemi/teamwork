@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina");
+@import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Gill+Sans");
 
 body {
   margin: 0;
@@ -9,19 +9,20 @@ body {
 
 #nav {
   width: 100%;
-  height: 110px;
-  padding: 20px 0 5px 0;
-  border-bottom: solid 8px #ee3114;
-  box-shadow: 10px 10px 10px #ccc;
+  height: 100px;
+  padding-left: 20px;
+  box-shadow: 10px 3px 10px #ccc;
   position: absolute;
   top: 0;
+  background-color: #457bde;
+  display: flex;
 }
 
 #title {
-  color: #625a56;
+  color: #fff;
+  font-family: "Gill Sans";
+  align-self: center;
   margin: 0;
-  font-family: "Baloo Bhaina";
-  text-transform: uppercase;
 }
 
 img {
@@ -35,11 +36,23 @@ a {
 
 #nav a {
   text-decoration: none;
+  align-items: center;
+  display: flex;
 }
 
 .nav-align {
-  text-align: center;
-  padding: 3px 0;
+  width: 100%;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#login {
+  height: 100px;
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .container {
@@ -47,26 +60,37 @@ a {
 }
 
 .button {
-  background-color: #ed4a0f;
   padding: 0.3vw 3vw;
-  border-radius: 2px;
   cursor: pointer;
-  display: inline-block;
   color: #fff;
+  font-size: 20px;
 }
 
 .button:hover {
-  background-color: #ffb99f;
-  color: #ed4a0f;
+  border-bottom: 2px solid white;
 }
 
-.subscriber {
-  padding: 10px 0px;
-  border-bottom: 1px solid lightgray;
+.button-login {
+  background-color: rgb(66, 103, 204);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: large;
+  border: 0;
+  min-width: 150px;
+  min-height: 100px;
 }
 
-.subscriber p {
-  margin: 0;
+.button-login:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.login-form {
+  display: block;
+  margin: 5px;
 }
 
 .list-container {
@@ -83,7 +107,11 @@ a {
 
 .subscription-form input {
   display: block;
-  margin: 5px;
+  margin: 4px;
+}
+
+.placeholder::placeholder {
+  font-weight: normal;
 }
 
 /* House list layout */

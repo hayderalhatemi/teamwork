@@ -11,10 +11,8 @@ import MongoStore from "connect-mongo";
 import multer from "multer";
 import methodOverride from "method-override";
 
-
 import homeController from "./controllers/homeController.js";
 import errorController from "./controllers/errorController.js";
-import subscribersController from "./controllers/subscribersController.js";
 import authRoutes from "./routes/authRoutes.js";
 import houseController from "./controllers/houseController.js";
 import uploads from "./controllers/uploads.js";
@@ -29,7 +27,7 @@ const MONGODB_URI =
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => console.log("✅ Connected to MongoDB successfully"))
   .catch((error) => console.error("❌ MongoDB connection error:", error));
@@ -40,7 +38,7 @@ app.set("view engine", "ejs");
 // ----- Basic middleware -----
 app.use(
   express.urlencoded({
-    extended: true
+    extended: true,
   })
 );
 app.use(express.json());
@@ -58,18 +56,22 @@ app.use(
     store: MongoStore.create({
       mongoUrl: MONGODB_URI,
       collectionName: "sessions",
-      ttl: 14 * 24 * 60 * 60 // 14 days
+      ttl: 14 * 24 * 60 * 60, // 14 days
     }),
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 // 1 day
-    }
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    },
   })
 );
 
 // Make current user available in all views
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.userId
-    ? { id: req.session.userId, role: req.session.userRole }
+    ? {
+        id: req.session.userId,
+        role: req.session.userRole,
+        name: req.session.userName,
+      }
     : null;
   next();
 });
@@ -89,9 +91,18 @@ app.post("/add_room", homeController.postedSignUpForm);
 app.use("/auth", authRoutes); // /auth/register, /auth/login, /auth/logout
 //edit house
 app.get("/houses/:id/edit", houseController.edit, houseController.redirectView);
-app.put("/houses/:id", upload.array("images", 10), houseController.update, houseController.redirectView);
+app.put(
+  "/houses/:id",
+  upload.array("images", 10),
+  houseController.update,
+  houseController.redirectView
+);
 //delete house
-app.delete("/houses/:id/delete", houseController.delete, houseController.redirectView);
+app.delete(
+  "/houses/:id/delete",
+  houseController.delete,
+  houseController.redirectView
+);
 
 // ----- Error handlers -----
 app.use(errorController.pageNotFoundError);
