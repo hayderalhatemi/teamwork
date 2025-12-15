@@ -1,17 +1,27 @@
 <div class="container">
   <div class="col-sm-6">
-    <img src="images/homepage.jpg" alt="">
+    <img src="images/homepage.jpg" alt="" />
   </div>
   <div class="col-sm-6">
+    <!---NOT logged in-->
     <% if (!currentUser) { %>
     <h1>Welcome!</h1>
-    <% } else { %>
-    <h1>Welcome, <%= currentUser.name %>!</h1>
-    <% } %>
     <p>Please check out all the new rentable locations by our users!</p>
     <p>
       When you want rent out your apartment or house
-      <a href="/auth/login">register an account to join! </a>
+      <a href="/auth/login">login or register</a>
+      an account to join!
     </p>
+
+    <!---Logged in-->
+    <% } else { %>
+    <h1>Welcome, <%= currentUser.name %>!</h1>
+    <p>Please check out all the new rentable locations by our users!</p>
+    <p>
+      When you want rent out your apartment or house, go to the
+      <a href="/add_room">Add apartment</a>
+      page to create a listing!
+    </p>
+    <% } %>
   </div>
 </div>

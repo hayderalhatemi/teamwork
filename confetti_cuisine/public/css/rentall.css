@@ -14,7 +14,7 @@ body {
   box-shadow: 10px 3px 10px #ccc;
   position: absolute;
   top: 0;
-  background-color: #457bde;
+  background-color: #3d74db;
   display: flex;
 }
 
@@ -71,7 +71,7 @@ a {
 }
 
 .button-login {
-  background-color: rgb(66, 103, 204);
+  background-color: #3159c9;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -88,6 +88,39 @@ a {
   font-weight: bold;
 }
 
+.button-delete {
+  padding: 0.3vw 3vw;
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  border-radius: 20px;
+  background-color: #b20000;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.button-delete:hover {
+  text-decoration: underline;
+  background-color: #e13939;
+}
+
+.button-edit {
+  padding: 0.3vw 3vw;
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  border-radius: 20px;
+  background-color: #3363e9;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.button-edit:hover {
+  text-decoration: underline;
+  color: #ffffff;
+  background-color: #5677d2;
+}
+
 .login-form {
   display: block;
   margin: 5px;
@@ -95,14 +128,22 @@ a {
 
 .list-container {
   padding: 0 20px;
-  border: 3px solid #ffb568;
   border-radius: 1px;
+  margin-bottom: 50px;
 }
 
 .item-label {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: large;
   font-style: italic;
   margin-right: 5px;
+  text-decoration: underline;
+}
+
+.item-text {
+  font-size: large;
+  margin-right: 10px;
+  text-transform: capitalize;
 }
 
 .form input {
@@ -127,11 +168,14 @@ a {
   justify-content: space-between;
   align-items: flex-start;
   padding: 15px 10px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 2px solid lightgray;
+  margin-bottom: 20px;
 }
 
 .house-content {
   width: 75%;
+  display: flex;
+  flex-direction: column;
 }
 
 .house-actions {
@@ -139,35 +183,6 @@ a {
   flex-direction: column;
   gap: 10px;
   align-items: flex-end;
-}
-
-/* Buttons */
-.btn {
-  padding: 6px 14px;
-  border-radius: 3px;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #fff;
-  border: none;
-}
-
-.btn-edit {
-  background-color: #ed4a0f;
-}
-
-.btn-edit:hover {
-  background-color: #ffb99f;
-  color: #ed4a0f;
-}
-
-.btn-delete {
-  background-color: #625a56;
-}
-
-.btn-delete:hover {
-  background-color: #ccc;
-  color: #625a56;
 }
 
 /* Images */
