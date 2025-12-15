@@ -2,64 +2,58 @@
   <div class="list-container">
     <% Houses.forEach(s => { %>
 
-      <div class="house">
-        <!-- LEFT SIDE CONTENT -->
-        <div class="house-content">
-          <p>
-            <span class="item-label">Kind:</span>
-            <%= s.kind %>
-          </p>
+    <div class="house">
+      <!-- LEFT SIDE CONTENT -->
+      <div class="house-content">
+        <span class="item-label">Kind:</span>
+        <span class="=item-text"><%= s.kind %></span>
 
-          <p>
-            <span class="item-label">Number of rooms:</span>
-            <%= s.number_of_rooms %>
-          </p>
+        <span class="item-label">Number of rooms:</span>
+        <span class="=item-text"><%= s.number_of_rooms %></span>
 
-          <p>
-            <span class="item-label">Zip Code:</span>
-            <%= s.zipCode %>
-          </p>
+        <span class="item-label">Zip Code:</span>
+        <span class="=item-text"><%= s.zipCode %></span>
 
-          <p>
-            <span class="item-label">Street Address:</span>
-            <%= s.streetAddress %>
-          </p>
+        <span class="item-label">Street Address:</span>
+        <span class="=item-text"><%= s.streetAddress %></span>
 
-          <p>
-            <span class="item-label">Rent status:</span>
-            <%= s.rent_status ? "Rented" : "Available" %>
-          </p>
+        <span class="item-label">Rent status:</span>><%= s.rent_status ?
+        "Rented" : "Available" %>
 
-          <!-- ✅ OWNER INFO -->
-          <p>
-            <span class="item-label">Owner:</span>
-            <%= s.owner ? s.owner.username : "Unknown" %>
-          </p>
-
-          <p>
-            <span class="item-label">House images:</span>
-            <% s.images.forEach(img => { %>
-              <img src="<%= img %>" alt="House Image" style="width:100px;height:100px;">
-            <% }); %>
-          </p>
+        <!-- ✅ OWNER INFO -->
+        <span class="item-label">Owner:</span>
+        <span class="=item-text"
+          ><%= s.owner ? s.owner.username : "Unknown" %>
+        </span>
+      </div>
+      <div class="house-content">
+        <% s.images.forEach(img => { %>
+        <img
+          src="<%= img %>"
+          alt="House Image"
+          style="width: 300px; height: 250px"
+        />
+        <% }); %>
+      </div>
+      <!-- RIGHT SIDE ACTIONS -->
+      <div class="house-actions">
+        <div class="center">
+          <a href="<%= `/houses/${s._id}/edit` %>">
+            <button class="button-edit">Edit</button>
+          </a>
         </div>
 
-        <!-- RIGHT SIDE ACTIONS -->
-        <div class="house-actions">
-          <div class="center">
-            <a class="button" href="<%= `/houses/${s._id}/edit` %>">
-              Edit
-            </a>
-          </div>
-
-          <div class="center">
-            <form action="/houses/<%= s._id %>/delete?_method=DELETE" method="POST"
-              onsubmit="return confirm('Are you sure you want to delete this house?')">
-              <button type="submit" class="button">Delete</button>
-            </form>
-          </div>
+        <div class="center">
+          <form
+            action="/houses/<%= s._id %>/delete?_method=DELETE"
+            method="POST"
+            onsubmit="return confirm('Are you sure you want to delete this house?')"
+          >
+            <button type="submit" class="button-delete">Delete</button>
+          </form>
         </div>
       </div>
+    </div>
 
     <% }); %>
   </div>
