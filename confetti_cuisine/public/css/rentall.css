@@ -105,13 +105,20 @@ a {
   margin-right: 5px;
 }
 
-.subscription-form input {
+.form input {
   display: block;
-  margin: 4px;
+  margin-bottom: 10px;
 }
 
-.placeholder::placeholder {
+.input {
+  border-style: solid;
+  border-radius: 4px;
   font-weight: normal;
+}
+
+.labels {
+  margin-left: 2px;
+  font-size: large;
 }
 
 /* House list layout */

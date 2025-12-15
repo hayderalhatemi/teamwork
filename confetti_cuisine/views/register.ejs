@@ -9,16 +9,16 @@
   </ul>
   <% } %>
 
-  <form action="/auth/register" method="post" class="subscription-form">
+  <form action="/auth/register" method="post" class="form">
     <label>
       Name
       <input
         type="text"
+        class="input"
         name="name"
         value="<%= form.name || '' %>"
         required
         placeholder="Name"
-        class="placeholder"
       />
     </label>
     <br />
@@ -26,11 +26,11 @@
       Email
       <input
         type="email"
+        class="input"
         name="email"
         value="<%= form.email || '' %>"
         required
         placeholder="Email"
-        class="placeholder"
       />
     </label>
     <br />
@@ -38,10 +38,10 @@
       Password
       <input
         type="password"
+        class="input"
         name="password"
         required
         placeholder="Password"
-        class="placeholder"
       />
     </label>
     <br />
