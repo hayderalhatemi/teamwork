@@ -38,7 +38,7 @@ const houseSchema = new mongoose.Schema({
   // ✅ STEP 1: apartment owner (user who created it)
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
     required: true
   }
 });

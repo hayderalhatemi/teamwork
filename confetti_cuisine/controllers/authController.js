@@ -111,3 +111,10 @@ export const logout = (req, res) => {
     res.redirect("/");
   });
 };
+//check login status
+export const isLoggedIn = (req, res, next) => {
+  if (!req.session.userId) {
+    return res.redirect("/auth/login");
+  }
+  next();
+};

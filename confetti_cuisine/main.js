@@ -10,12 +10,14 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import multer from "multer";
 import methodOverride from "method-override";
+import passport from "passport";
 
 import homeController from "./controllers/homeController.js";
 import errorController from "./controllers/errorController.js";
 import authRoutes from "./routes/authRoutes.js";
 import houseController from "./controllers/houseController.js";
 import uploads from "./controllers/uploads.js";
+import { isLoggedIn } from "./controllers/authController.js";
 
 const app = express();
 const upload = multer({ dest: "public/uploads/" });
@@ -84,7 +86,7 @@ app.get("/", (req, res) => {
 // Display all houses or room
 app.get("/allrooms", houseController.getAllHouses);
 app.get("/add_room", houseController.registerHouse);
-app.post("/newHouse", upload.array("images", 10), houseController.saveHouse);
+app.post("/newHouse", isLoggedIn, upload.array("images", 10), houseController.saveHouse);
 app.get("/prices", homeController.showPrices);
 app.post("/add_room", homeController.postedSignUpForm);
 

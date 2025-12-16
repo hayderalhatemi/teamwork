@@ -2,32 +2,68 @@
 
   <h2>Available apartments</h2>
 
-  <% houses.forEach(h => { %>
+  <div class="house-list">
+    <% houses.forEach(h => { %>
 
-    <div class="house">
+      <div class="house-card">
 
-      <p><strong>Type:</strong> <%= h.kind %></p>
-      <p><strong>Address:</strong> <%= h.streetAddress %></p>
-      <p><strong>Rooms:</strong> <%= h.number_of_rooms %></p>
-      <p><strong>Rented:</strong> <%= h.rent_status ? "Yes" : "No" %></p>
+        <div class="house-info">
+          <p><strong>Type:</strong> <%= h.kind %></p>
+          <p><strong>Address:</strong> <%= h.streetAddress %></p>
+          <p><strong>Rooms:</strong> <%= h.number_of_rooms %></p>
+          <p><strong>Rented:</strong> <%= h.rent_status ? "Yes" : "No" %></p>
 
-      <% if (h.owner) { %>
-        <p>
-          <strong>Owner:</strong>
-          <%= h.owner.username %> (<%= h.owner.email %>)
-        </p>
-      <% } %>
+          <% if (h.owner) { %>
+            <p>
+              <strong>Owner:</strong>
+              <%= h.owner.username %> (<%= h.owner.email %>)
+            </p>
+          <% } %>
+        </div>
 
-      <% if (h.images && h.images.length > 0) { %>
-        <% h.images.forEach(img => { %>
-          <img src="<%= img %>" style="width:120px; margin:5px;">
-        <% }) %>
-      <% } %>
+        <% if (h.images && h.images.length > 0) { %>
+          <div class="house-images">
+            <% h.images.forEach(img => { %>
+              <img src="<%= img %>" alt="House image">
+            <% }) %>
+          </div>
+        <% } %>
 
-      <hr>
+      </div>
 
-    </div>
-
-  <% }) %>
+    <% }) %>
+  </div>
 
 </div>
+<style>
+  .house-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .house-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .house-info p {
+    margin: 5px 0;
+  }
+
+  .house-images {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .house-images img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+  }
+</style>

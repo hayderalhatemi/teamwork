@@ -29,6 +29,9 @@ export default {
 
   saveHouse: async (req, res) => {
     try {
+      if (!req.session.userId) {
+        return res.redirect("/auth/login");
+      }
       const imagePaths = req.files
         ? req.files.map(file => `/uploads/${file.filename}`)
         : [];
@@ -40,11 +43,12 @@ export default {
         streetAddress: req.body.streetAddress,
         rent_status: req.body.rent_status === "true",
         images: imagePaths,
-        owner: req.user._id
+        owner: req.session.userId
       });
 
       await newHouse.save();
       res.render("thanks");
+      console.log("req.user:", req.user);
 
     } catch (error) {
       console.error(error);
