@@ -17,8 +17,8 @@
         <span class="item-label">Street Address:</span>
         <span class="=item-text"><%= s.streetAddress %></span>
 
-        <span class="item-label">Rent status:</span><%= s.rent_status ?
-        "Rented" : "Available" %>
+        <span class="item-label">Rent status:</span><%= s.rent_status ? "Rented"
+        : "Available" %>
 
         <!-- ✅ OWNER INFO -->
         <span class="item-label">Owner:</span>
@@ -38,6 +38,7 @@
       <!-- RIGHT SIDE ACTIONS -->
       <div class="house-actions">
         <div class="center">
+          <% if (currentUser) { %>
           <a href="<%= `/houses/${s._id}/edit` %>">
             <button class="button-edit">Edit</button>
           </a>
@@ -51,6 +52,7 @@
           >
             <button type="submit" class="button-delete">Delete</button>
           </form>
+          <% } %>
         </div>
       </div>
     </div>
